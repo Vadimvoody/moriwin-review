@@ -1,0 +1,5 @@
+# Local dev artifacts in mockup folder
+node_modules/
+package.json
+package-lock.json
+.server.pid

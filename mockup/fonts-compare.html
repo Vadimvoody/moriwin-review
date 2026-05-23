@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoriWin Review — Шрифты-сравнение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Все 6 кандидатов с кириллицей -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Source+Serif+4:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:            #0a0e22;
+      --bg-card:       #11163a;
+      --border:        #2a3170;
+      --text:          #e8eaf5;
+      --text-muted:    #a5ade9;
+      --text-dim:      #5f689a;
+      --gold:          #f7cb6a;
+      --gold-dim:      #8a7340;
+      --font-display:  'PT Serif', Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 16px;
+      min-height: 100vh;
+      padding: 32px 24px 64px;
+    }
+    .controls {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 14, 34, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 20px 0;
+      margin: -32px -24px 32px;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    .controls-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .controls h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--gold);
+    }
+    .controls p { color: var(--text-muted); font-size: 14px; }
+    .fonts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .fonts-row button {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .fonts-row button:hover { color: var(--text); border-color: var(--gold-dim); }
+    .fonts-row button.active {
+      background: var(--gold);
+      color: #0a0e22;
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    .preview {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .preview-section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .preview-section h2 {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+
+    /* === SAMPLES — все используют var(--font-display) === */
+    .sample-h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .sample-h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .sample-h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-top: 24px;
+    }
+    .sample-h2 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .sample-rating-tier {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--gold);
+      margin-top: 24px;
+    }
+    .sample-score {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .sample-score .big {
+      font-family: var(--font-display);
+      font-size: 84px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text);
+    }
+    .sample-score .small {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .sample-lede {
+      font-family: 'Manrope', sans-serif;
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin-top: 20px;
+      max-width: 640px;
+    }
+    .sample-lede::first-letter {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      float: left;
+      font-size: 72px;
+      line-height: 0.85;
+      padding: 8px 14px 0 0;
+    }
+
+    .meta-row {
+      margin-top: 24px;
+      font-family: 'Manrope', sans-serif;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-dim);
+      font-size: 13px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .meta-row span { display: inline-flex; gap: 8px; align-items: center; }
+    .meta-row .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+    .current-name {
+      display: inline-block;
+      font-family: 'Manrope', sans-serif;
+      background: var(--gold);
+      color: #0a0e22;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <h1>Выбор display-шрифта (с кириллицей)</h1>
+      <p>Все варианты с поддержкой русского. Кликни на любой и сравни визуально.</p>
+      <div class="fonts-row">
+        <button data-font="'PT Serif', Georgia, serif" class="active">PT Serif</button>
+        <button data-font="'Lora', Georgia, serif">Lora</button>
+        <button data-font="'EB Garamond', Georgia, serif">EB Garamond</button>
+        <button data-font="'Cormorant Garamond', Georgia, serif">Cormorant Garamond</button>
+        <button data-font="'Spectral', Georgia, serif">Spectral</button>
+        <button data-font="'Source Serif 4', Georgia, serif">Source Serif 4</button>
+      </div>
+      <p style="font-size:13px;color:var(--text-dim);">
+        Текущий: <span class="current-name" id="current">PT Serif</span>
+      </p>
+    </div>
+  </div>
+
+  <main class="preview">
+
+    <section class="preview-section">
+      <h2>1 · Главный заголовок (Hero H1)</h2>
+      <h1 class="sample-h1">
+        Казино, которое <em>пытается стать</em><br>
+        больше чем казино
+      </h1>
+      <div class="meta-row">
+        <span><span class="dot"></span>Обновлено 23 мая 2026</span>
+        <span><span class="dot"></span>Автор · Редакция</span>
+        <span><span class="dot"></span>Лицензия Curaçao 8048/JAZ</span>
+      </div>
+    </section>
+
+    <section class="preview-section">
+      <h2>2 · Заголовок раздела (H2)</h2>
+      <h2 class="sample-h2">
+        За полтора месяца тестов MoriWin <em>удивил</em> там, где не ждали
+      </h2>
+      <p class="sample-lede">
+        MoriWin вышел на рынок в 2026 году как продукт команды YouTube-блогера
+        Профессора Мориарти. Это означает три вещи: за казино стоит реальная
+        медиа-аудитория в 4.5 миллиона человек, есть собственный токен $MORI,
+        и есть привычка делать продукт «для своих».
+      </p>
+    </section>
+
+    <section class="preview-section">
+      <h2>3 · Рейтинг (большие цифры)</h2>
+      <div class="sample-rating-tier">VIP-TIER</div>
+      <div class="sample-score">
+        <span class="big">4.5</span>
+        <span class="small">/ 5.0</span>
+      </div>
+    </section>
+
+    <section class="preview-section">
+      <h2>4 · Italic-цитата</h2>
+      <h2 class="sample-h2" style="font-style:italic;font-weight:400;">
+        «Бонус 400% — это не маркетинговый трюк, а реальный кэш на старте»
+      </h2>
+    </section>
+
+  </main>
+
+  <script>
+    const btns = document.querySelectorAll('.fonts-row button');
+    const current = document.getElementById('current');
+    const root = document.documentElement;
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const font = btn.dataset.font;
+        root.style.setProperty('--font-display', font);
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        current.textContent = btn.textContent;
+      });
+    });
+  </script>
+
+</body>
+</html>

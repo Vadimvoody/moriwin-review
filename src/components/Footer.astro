@@ -1,0 +1,62 @@
+---
+import { SITE, FOOTER_NAV } from '../config/site';
+const year = new Date().getFullYear();
+const groups = [FOOTER_NAV.reviews, FOOTER_NAV.guides, FOOTER_NAV.contacts];
+---
+
+<footer class="border-t border-border mt-20">
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12">
+      <div class="max-w-[420px]">
+        <a href="/" class="flex items-baseline gap-2.5" aria-label={SITE.name}>
+          <span
+            class="text-2xl font-bold tracking-tight text-text"
+            style="font-family: var(--font-display); letter-spacing: -0.02em;"
+          >
+            Mori<span
+              class="text-gold font-normal italic"
+              style="font-family: var(--font-display);"
+            >Win</span> Review
+          </span>
+        </a>
+        <p class="mt-4 text-sm text-text-muted leading-relaxed">
+          Независимое издание о криптоказино MoriWin и экосистеме Профессора
+          Мориарти. Все обзоры основаны на собственных депозитах и реальных
+          тестах команды. Партнёрская программа — наш источник дохода, но не
+          источник цензуры.
+        </p>
+      </div>
+
+      {
+        groups.map((group) => (
+          <div>
+            <h5
+              class="text-[11px] uppercase tracking-[0.22em] text-gold-dim font-semibold mb-5"
+            >
+              {group.title}
+            </h5>
+            <ul class="grid gap-2.5">
+              {group.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-text-muted hover:text-gold transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="pt-6 border-t border-border flex flex-col sm:flex-row sm:justify-between gap-2 text-xs text-text-dim tracking-wide tabular"
+    >
+      <span>© {year} {SITE.name} · Independent Publication</span>
+      <span>18+ · Играйте ответственно</span>
+    </div>
+  </div>
+</footer>

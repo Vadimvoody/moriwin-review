@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/*
+ * Дизайн-система MoriWin Review.
+ * Все цвета и шрифты централизованы здесь.
+ * Source of truth — docs/specs/2026-05-23-design-spec.md
+ */
+
+@theme {
+  /* Brand palette (синхронизирована с play.moricasino.com) */
+  --color-bg:            #0a0e22;
+  --color-bg-card:       #11163a;
+  --color-bg-card-hover: #1a2152;
+  --color-border:        #2a3170;
+  --color-border-strong: #697cc8;
+
+  --color-text:          #e8eaf5;
+  --color-text-muted:    #a5ade9;
+  --color-text-dim:      #5f689a;
+
+  --color-gold:          #f7cb6a;
+  --color-gold-bright:   #ffd97a;
+  --color-gold-dim:      #8a7340;
+
+  --color-success:       #00e15d;
+  --color-danger:        #eb3b3e;
+  --color-warning:       #e1a900;
+
+  /* Tier-цвета для рейтингов казино */
+  --color-tier-vip:      #f7cb6a;
+  --color-tier-elite:    #f76a6a;
+  --color-tier-pro:      #6af7d1;
+  --color-tier-expert:   #eb6af7;
+  --color-tier-starter:  #6aa7f7;
+
+  /* Цвета покерных фишек */
+  --color-chip-red:    #c53030;
+  --color-chip-green:  #2f855a;
+  --color-chip-black:  #1a202c;
+  --color-chip-purple: #6b46c1;
+  --color-chip-gold:   #d4a836;
+
+  /* Шрифты */
+  --font-display:  'PT Serif', Georgia, 'Times New Roman', serif;
+  --font-sans:     'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Контейнеры */
+  --container-content: 1240px;
+}
+
+/* === Reset & basics === */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 400;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Табличные цифры везде, где нужны столбики */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Скроллбар в тон бренду */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-dim); }
+
+/* === Утилитарные классы === */
+
+/* Заголовок в стиле display + italic-акцент */
+@utility display-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--color-text);
+}
+
+/* Eyebrow-надпись над заголовками (издательский стиль) */
+@utility eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim);
+  font-weight: 600;
+}
+
+/* Двойная разделительная линия в стиле editorial */
+@utility editorial-divider {
+  border-top: 1px solid var(--color-gold-dim);
+  padding-top: 1px;
+  border-bottom: 1px solid var(--color-gold-dim);
+  opacity: 0.4;
+}
+
+/* CTA-кнопка (золото на тёмном) */
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+@utility btn-gold-hover {
+  background: var(--color-gold-bright);
+}
+
+/* Вторичная кнопка-обводка */
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* === Анимированное подчёркивание ссылок === */
+.link-underline {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-underline:hover { color: var(--color-text); }
+.link-underline:hover::after { width: 100%; }
+
+/* === Стили для прозы (статей через MDX) === */
+.prose-mori {
+  color: var(--color-text);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.prose-mori h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  margin: 80px 0 28px;
+}
+.prose-mori h2 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold);
+}
+.prose-mori h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 28px);
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 56px 0 20px;
+}
+.prose-mori p {
+  margin-bottom: 22px;
+}
+.prose-mori p.lede {
+  font-size: 21px;
+  line-height: 1.55;
+  margin-bottom: 32px;
+}
+.prose-mori p.lede::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold);
+  float: left;
+  font-size: 72px;
+  line-height: 0.85;
+  padding: 8px 14px 0 0;
+}
+.prose-mori a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold-dim);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+.prose-mori a:hover {
+  text-decoration-color: var(--color-gold);
+}
+.prose-mori strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+.prose-mori em {
+  font-style: italic;
+}
+.prose-mori ul, .prose-mori ol {
+  margin: 0 0 22px 24px;
+}
+.prose-mori li {
+  margin-bottom: 8px;
+}
+.prose-mori blockquote {
+  border-left: 2px solid var(--color-gold);
+  padding: 4px 0 4px 24px;
+  margin: 32px 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+.prose-mori code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  background: var(--color-bg-card);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-gold);
+}
+.prose-mori table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  font-variant-numeric: tabular-nums;
+}
+.prose-mori th {
+  background: var(--color-bg-card);
+  text-align: left;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+}
+.prose-mori td {
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+}

@@ -1,0 +1,143 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  /** Заголовок страницы. Если не указан — используется defaultTitle. */
+  title?: string;
+  /** Описание для meta description и OG. */
+  description?: string;
+  /** Список ключевых слов (массив). */
+  keywords?: readonly string[];
+  /** Канонический URL. По умолчанию — текущий. */
+  canonical?: string;
+  /** Тип Open Graph. */
+  ogType?: 'website' | 'article';
+  /** Картинка для OG/Twitter. Относительный путь от корня сайта. */
+  ogImage?: string;
+  /** Запретить индексацию. */
+  noindex?: boolean;
+  /** Дополнительная JSON-LD схема для конкретной страницы. */
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description = SITE.defaultDescription,
+  keywords = SITE.defaultKeywords,
+  canonical,
+  ogType = 'website',
+  ogImage = '/og-default.jpg',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE.shortName}` : SITE.defaultTitle;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const ogImageUrl = new URL(ogImage, SITE.url).toString();
+
+// Базовые схемы — на каждой странице
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.organization.name,
+  url: SITE.url,
+  logo: new URL('/logo.svg', SITE.url).toString(),
+  foundingDate: SITE.organization.foundingDate,
+  sameAs: [SITE.brand.youtube, SITE.brand.telegramChannel],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  inLanguage: SITE.locale,
+};
+
+const allSchemas: Array<Record<string, unknown>> = [organizationSchema, websiteSchema];
+if (schema) {
+  if (Array.isArray(schema)) allSchemas.push(...schema);
+  else allSchemas.push(schema);
+}
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0a0e22" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large" />}
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* Open Graph */}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.ogLocale} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    {/* Возрастной маркер — критично для гембла */}
+    <meta name="rating" content="adult" />
+
+    {/* Favicon */}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+
+    {/* Шрифты — preconnect для LCP */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;500;600;700&display=swap"
+    />
+
+    {/* Schema.org JSON-LD */}
+    <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+
+    {/* Слот для дополнительных тегов на конкретной странице */}
+    <slot name="head" />
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-gold focus:text-bg focus:px-3 focus:py-2"
+    >
+      Перейти к содержимому
+    </a>
+
+    <Header />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

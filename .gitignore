@@ -1,0 +1,46 @@
+# Build output
+dist/
+.output/
+.vercel/
+.netlify/
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Astro
+.astro/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+Thumbs.db
+
+# Mockup / dev artifacts
+mockup/node_modules/
+mockup/.server.pid
+.playwright-mcp/
+*.pid
+
+# Screenshots from dev/debug
+moricasino-home.png
+mockup-*.png
+site-astro-*.png
+fonts-compare-*.png
+compare-check.txt
+final-check.txt

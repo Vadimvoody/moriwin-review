@@ -1,0 +1,122 @@
+---
+/**
+ * Покерные фишки как визуальный язык рейтинга.
+ * Передаёшь массив фишек (от высокой к низкой) — он рендерит стек.
+ *
+ * Пример:
+ *   <ChipStack chips={['gold', 'purple', 'purple', 'black', 'red']} />
+ */
+
+export type ChipColor = 'red' | 'green' | 'black' | 'purple' | 'gold';
+
+interface Props {
+  /** Список фишек в порядке убывания значимости. */
+  chips: ChipColor[];
+  /** Размер фишек: 'sm' = 28px, 'md' = 44px. */
+  size?: 'sm' | 'md';
+  /** ARIA-label для всего стека. */
+  label?: string;
+}
+
+const { chips, size = 'md', label } = Astro.props;
+
+const chipPx = size === 'sm' ? 28 : 44;
+const innerInset = size === 'sm' ? 4 : 6;
+const dashBorder = size === 'sm' ? '1.5px' : '2px';
+const fontSize = size === 'sm' ? 0 : 10; // на маленьких — без подписей
+const gap = size === 'sm' ? 3 : 4;
+
+const denominations: Record<ChipColor, string> = {
+  red: '$5',
+  green: '$25',
+  black: '$100',
+  purple: '$500',
+  gold: '$1K',
+};
+
+const chipBg: Record<ChipColor, string> = {
+  red: '#c53030',
+  green: '#2f855a',
+  black: '#1a202c',
+  purple: '#6b46c1',
+  gold: '#d4a836',
+};
+---
+
+<div
+  class="chip-stack inline-flex items-end"
+  style={`gap: ${gap}px;`}
+  aria-label={label ?? `Рейтинг ${chips.length} фишек`}
+  role="img"
+>
+  {
+    chips.map((color) => (
+      <span
+        class={`chip chip-${color}`}
+        style={`
+          --chip-bg: ${chipBg[color]};
+          width: ${chipPx}px;
+          height: ${chipPx}px;
+          font-size: ${fontSize}px;
+          --inner-inset: ${innerInset}px;
+          --dash-border: ${dashBorder};
+        `}
+      >
+        {size === 'md' && <span class="chip-label">{denominations[color]}</span>}
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .chip {
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    background: var(--chip-bg);
+    border: var(--dash-border, 2px) dashed rgba(255, 255, 255, 0.18);
+    box-shadow:
+      inset 0 -3px 6px rgba(0, 0, 0, 0.35),
+      inset 0 3px 6px rgba(255, 255, 255, 0.18),
+      0 4px 12px rgba(0, 0, 0, 0.6);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chip::before,
+  .chip::after {
+    content: '';
+    position: absolute;
+    inset: var(--inner-inset, 6px);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .chip::before {
+    background: var(--chip-bg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .chip::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 60%);
+  }
+
+  /* Золотая фишка — особое сияние */
+  .chip.chip-gold {
+    box-shadow:
+      inset 0 -3px 6px rgba(140, 90, 0, 0.5),
+      inset 0 3px 6px rgba(255, 240, 180, 0.4),
+      0 4px 16px rgba(247, 203, 106, 0.35);
+  }
+  .chip.chip-gold::before {
+    border-color: rgba(255, 230, 150, 0.3);
+  }
+
+  .chip-label {
+    position: relative;
+    z-index: 1;
+  }
+</style>

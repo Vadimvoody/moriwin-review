@@ -1,0 +1,50 @@
+---
+import { SITE, MAIN_NAV } from '../config/site';
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border"
+  style="background: rgba(10, 14, 34, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
+>
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-8 py-4 flex items-center justify-between gap-8">
+    <a href="/" class="flex items-baseline gap-2.5 group" aria-label={SITE.name}>
+      <span
+        class="text-2xl font-bold tracking-tight text-text"
+        style="font-family: var(--font-display); letter-spacing: -0.02em;"
+      >
+        Mori<span
+          class="text-gold font-normal italic"
+          style="font-family: var(--font-display);"
+        >Win</span> Review
+      </span>
+      <span
+        class="hidden sm:inline-block self-center pl-2.5 border-l border-border text-text-dim text-[10px] uppercase tracking-[0.18em] font-medium"
+      >
+        Независимый обзор
+      </span>
+    </a>
+
+    <nav class="hidden md:flex gap-7 text-sm font-medium" aria-label="Главное меню">
+      {
+        MAIN_NAV.map((item) => (
+          <a href={item.href} class="link-underline text-text-muted">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      type="button"
+      class="md:hidden flex items-center justify-center w-9 h-9 text-text-muted hover:text-gold transition-colors"
+      aria-label="Открыть меню"
+      data-mobile-menu-button
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="7" x2="21" y2="7" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="17" x2="21" y2="17" />
+      </svg>
+    </button>
+  </div>
+</header>
