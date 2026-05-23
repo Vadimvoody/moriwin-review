@@ -44,3 +44,7 @@ site-astro-*.png
 fonts-compare-*.png
 compare-check.txt
 final-check.txt
+
+prod-check.json
+compare-check.json
+*.tmp

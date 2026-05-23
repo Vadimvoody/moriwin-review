@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексировать служебное
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?utm_
+
+# Sitemap
+Sitemap: https://moriwin-review.ru/sitemap-index.xml
