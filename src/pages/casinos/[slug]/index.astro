@@ -1,0 +1,139 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import ChipStack from '../../../components/ChipStack.astro';
+
+export async function getStaticPaths() {
+  const casinos = await getCollection('casinos');
+  return casinos.map((casino) => ({
+    params: { slug: casino.data.slug ?? casino.id },
+    props: { casino },
+  }));
+}
+
+const { casino } = Astro.props;
+const { Content } = await render(casino);
+const c = casino.data;
+
+const tierLabel: Record<string, string> = {
+  starter: 'STARTER-TIER',
+  pro: 'PRO-TIER',
+  elite: 'ELITE-TIER',
+  vip: 'VIP-TIER',
+  expert: 'EXPERT-TIER',
+};
+---
+
+<Layout
+  title={`${c.name} — обзор казино 2026, бонусы ${c.welcomeBonus}`}
+  description={c.description}
+>
+  {/* HERO */}
+  <section class="relative">
+    <div
+      class="absolute inset-0 pointer-events-none -z-10"
+      style="background: radial-gradient(ellipse 60% 50% at 30% 40%, rgba(105, 124, 200, 0.08), transparent 70%);"
+    ></div>
+
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-8 py-20 md:py-24 grid gap-12 md:gap-16 lg:grid-cols-[1.5fr_1fr] items-end">
+      <div>
+        <p class="eyebrow flex items-center gap-3 mb-6">
+          <span class="inline-block w-6 h-px bg-gold-dim"></span>
+          {tierLabel[c.tier] ?? c.tier} · ОБЗОР КАЗИНО
+        </p>
+        <h1
+          class="display-title text-[clamp(40px,5.6vw,72px)] leading-[1.02] mb-7"
+        >
+          {c.name} — <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">полный обзор</em>
+        </h1>
+        <p class="text-[19px] leading-[1.55] text-text-muted max-w-[520px] mb-9">
+          {c.description}
+        </p>
+      </div>
+
+      <aside
+        class="relative p-8 border border-border"
+        style="background: linear-gradient(180deg, var(--color-bg-card) 0%, rgba(17, 22, 58, 0.6) 100%);"
+      >
+        <div class="absolute top-0 inset-x-0 h-px" style="background: linear-gradient(90deg, transparent, var(--color-gold), transparent);"></div>
+        <div class="text-[11px] uppercase tracking-[0.15em] text-text-dim font-medium mb-1.5">Итоговый рейтинг</div>
+        <div class="text-[22px] font-bold text-gold tracking-tight mb-6" style="font-family: var(--font-display);">{tierLabel[c.tier]}</div>
+        <div class="flex items-baseline gap-2 mb-7 tabular">
+          <span class="text-[64px] font-bold text-text leading-none" style="font-family: var(--font-display);">{c.rating}</span>
+          <span class="text-[22px] text-text-dim font-normal" style="font-family: var(--font-display);">/ 5.0</span>
+        </div>
+        <ChipStack chips={c.chips} label={`Рейтинг ${c.name} ${c.rating} из 5`} />
+        <dl class="mt-6 pt-5 border-t border-border grid grid-cols-[1fr_auto] gap-y-2 gap-x-4 text-[13px] tabular">
+          <dt class="text-text-muted">Скорость выплат</dt><dd class="text-success font-medium">{c.breakdown.withdrawalSpeed}</dd>
+          <dt class="text-text-muted">Размер бонуса</dt><dd class="text-success font-medium">{c.welcomeBonus}</dd>
+          <dt class="text-text-muted">RTP</dt><dd class="text-success font-medium">{c.breakdown.rtp}</dd>
+          <dt class="text-text-muted">Поддержка</dt><dd class="text-text font-medium">{c.breakdown.support}</dd>
+          <dt class="text-text-muted">KYC</dt><dd class="text-text font-medium">{c.breakdown.kyc}</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
+
+  {/* ARTICLE + SIDEBAR */}
+  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24">
+    <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
+      <article class="prose-mori max-w-[720px]">
+        <Content />
+      </article>
+
+      <aside class="md:sticky md:top-24 md:self-start space-y-6">
+        <div class="relative p-7 border border-border bg-bg-card" style="border-top: 2px solid var(--color-gold);">
+          <p class="eyebrow mb-3 flex items-center gap-3">
+            <span class="inline-block w-5 h-px bg-gold-dim"></span>
+            Эксклюзивно для читателей
+          </p>
+          <h3 class="text-[24px] font-bold leading-[1.15] tracking-tight text-text mb-2" style="font-family: var(--font-display); letter-spacing: -0.015em;">
+            {c.welcomeBonus}
+          </h3>
+          {c.promoCode && (
+            <p class="text-sm text-text-muted leading-relaxed mb-5">
+              Промокод: <strong class="text-gold font-semibold">{c.promoCode}</strong>
+            </p>
+          )}
+          <a href={c.referralUrl} class="btn-gold w-full hover:bg-gold-bright" rel="nofollow sponsored noopener" target="_blank">
+            Играть с бонусом →
+          </a>
+        </div>
+
+        <div class="p-6 border-l-2 border-border-strong" style="background: rgba(17, 22, 58, 0.4);">
+          <h4 class="text-[10px] uppercase tracking-[0.22em] text-text-muted font-semibold mb-4">Быстрые факты</h4>
+          <dl class="grid grid-cols-[1fr_auto] gap-y-2.5 gap-x-4 text-[13px] tabular">
+            <dt class="text-text-dim">Лицензия</dt><dd class="text-text font-medium">{c.facts.license}</dd>
+            <dt class="text-text-dim">Год запуска</dt><dd class="text-text font-medium">{c.facts.launchYear}</dd>
+            <dt class="text-text-dim">Мин. депозит</dt><dd class="text-text font-medium">{c.facts.minDeposit}</dd>
+            <dt class="text-text-dim">Мин. вывод</dt><dd class="text-text font-medium">{c.facts.minWithdrawal}</dd>
+            <dt class="text-text-dim">Валюты</dt><dd class="text-text font-medium">{c.facts.currencies.join(' · ')}</dd>
+            <dt class="text-text-dim">Игр</dt><dd class="text-text font-medium">{c.facts.gamesCount}</dd>
+            <dt class="text-text-dim">Провайдеров</dt><dd class="text-text font-medium">{c.facts.providersCount}</dd>
+            <dt class="text-text-dim">Языки</dt><dd class="text-text font-medium">{c.facts.languages.join(' · ')}</dd>
+          </dl>
+        </div>
+
+        {c.pros.length > 0 && (
+          <div class="p-6 border border-border bg-bg-card">
+            <h4 class="text-[10px] uppercase tracking-[0.22em] text-success font-semibold mb-4">Плюсы</h4>
+            <ul class="space-y-2 text-sm text-text-muted">
+              {c.pros.map((p) => <li class="flex gap-2"><span class="text-success">+</span>{p}</li>)}
+            </ul>
+          </div>
+        )}
+
+        {c.cons.length > 0 && (
+          <div class="p-6 border border-border bg-bg-card">
+            <h4 class="text-[10px] uppercase tracking-[0.22em] text-danger font-semibold mb-4">Минусы</h4>
+            <ul class="space-y-2 text-sm text-text-muted">
+              {c.cons.map((c_) => <li class="flex gap-2"><span class="text-danger">−</span>{c_}</li>)}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+</Layout>

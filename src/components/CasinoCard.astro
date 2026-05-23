@@ -1,0 +1,80 @@
+---
+/**
+ * Карточка обзора казино — для списков и сравнительных секций.
+ */
+import ChipStack, { type ChipColor } from './ChipStack.astro';
+
+interface Props {
+  name: string;
+  slug: string;
+  description: string;
+  rating: number;
+  tier: string;
+  chips: ChipColor[];
+  welcomeBonus: string;
+  referralUrl: string;
+  facts: {
+    withdrawalSpeed: string;
+    gamesCount: string;
+    rtp?: string;
+  };
+}
+
+const { name, slug, description, rating, tier, chips, welcomeBonus, referralUrl, facts } = Astro.props;
+
+const tierLabel: Record<string, string> = {
+  starter: 'STARTER-TIER',
+  pro: 'PRO-TIER',
+  elite: 'ELITE-TIER',
+  vip: 'VIP-TIER',
+  expert: 'EXPERT-TIER',
+};
+---
+
+<div
+  class="relative p-7 border border-border bg-bg-card transition-all duration-200 hover:-translate-y-1 hover:border-gold-dim"
+>
+  <h3
+    class="text-[22px] font-bold text-text mb-1"
+    style="font-family: var(--font-display);"
+  >
+    {name}
+  </h3>
+  <p class="text-[11px] uppercase tracking-[0.18em] text-text-dim font-medium mb-5">
+    {tierLabel[tier] ?? tier} · РЕЙТИНГ {rating}/5
+  </p>
+
+  <ChipStack chips={chips} size="sm" />
+
+  <p class="text-sm text-text-muted leading-relaxed mt-4 mb-5">
+    {description}
+  </p>
+
+  <dl class="grid grid-cols-[1fr_auto] gap-y-2 gap-x-3 text-[13px] mb-5 tabular">
+    <dt class="text-text-dim">Welcome</dt>
+    <dd class="text-success font-semibold">{welcomeBonus}</dd>
+
+    <dt class="text-text-dim">Выплата</dt>
+    <dd class="text-text font-medium">{facts.withdrawalSpeed}</dd>
+
+    <dt class="text-text-dim">Игр</dt>
+    <dd class="text-text font-medium">{facts.gamesCount}</dd>
+  </dl>
+
+  <div class="flex gap-2">
+    <a
+      href={`/casinos/${slug}/`}
+      class="btn-outline flex-1 text-center text-[12px] py-2.5 hover:bg-bg-card"
+    >
+      Обзор
+    </a>
+    <a
+      href={referralUrl}
+      class="btn-gold flex-1 text-center text-[12px] py-2.5 hover:bg-gold-bright"
+      rel="nofollow sponsored noopener"
+      target="_blank"
+    >
+      Играть →
+    </a>
+  </div>
+</div>

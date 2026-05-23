@@ -1,0 +1,103 @@
+---
+/**
+ * Общий layout для статей из коллекции articles.
+ * Подключает prose-стили, breadcrumb, meta-блок.
+ */
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  eyebrow?: string;
+  readingTime?: number;
+  tags?: string[];
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author = 'Редакция',
+  eyebrow,
+  readingTime,
+  tags,
+  canonical,
+  noindex = false,
+} = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const updatedStr = updatedDate
+  ? updatedDate.toLocaleDateString('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+>
+  <article class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16 md:py-24">
+    <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
+      <div class="prose-mori max-w-[720px]">
+        {eyebrow && (
+          <p class="eyebrow flex items-center gap-3 mb-5">
+            <span class="inline-block w-6 h-px bg-gold-dim"></span>
+            {eyebrow}
+          </p>
+        )}
+
+        <h1
+          class="display-title text-[clamp(32px,5vw,52px)] mb-8"
+          style="margin-top: 0;"
+        >
+          <Fragment set:html={title.replace(/<em>|<\/em>/g, '')} />
+        </h1>
+
+        <div class="flex flex-wrap gap-4 text-[13px] text-text-dim tabular mb-10 pb-8 border-b border-border">
+          <span class="inline-flex items-center gap-2">
+            <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+            {dateStr}
+          </span>
+          {updatedStr && (
+            <span class="inline-flex items-center gap-2">
+              <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+              Обновлено {updatedStr}
+            </span>
+          )}
+          <span class="inline-flex items-center gap-2">
+            <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+            {author}
+          </span>
+          {readingTime && (
+            <span class="inline-flex items-center gap-2">
+              <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+              {readingTime} мин чтения
+            </span>
+          )}
+        </div>
+
+        <slot />
+      </div>
+
+      <aside class="md:sticky md:top-24 md:self-start space-y-6">
+        <slot name="sidebar" />
+      </aside>
+    </div>
+  </article>
+</Layout>

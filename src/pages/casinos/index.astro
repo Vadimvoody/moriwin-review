@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CasinoCard from '../../components/CasinoCard.astro';
+
+const allCasinos = (await getCollection('casinos'))
+  .filter((c) => !c.data.noindex)
+  .sort((a, b) => b.data.rating - a.data.rating);
+---
+
+<Layout
+  title="Обзоры казино — рейтинг лучших криптоказино 2026"
+  description="Честные обзоры онлайн-казино с криптовалютными депозитами и выводами. Рейтинги, бонусы, скорость выплат — только проверенные площадки."
+>
+  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-20 md:py-24">
+    <p class="eyebrow flex items-center gap-3 mb-5">
+      <span class="inline-block w-6 h-px bg-gold-dim"></span>
+      РЕЙТИНГ КАЗИНО
+    </p>
+    <h1
+      class="display-title text-[clamp(36px,5vw,56px)] mb-10"
+      style="margin-top: 0;"
+    >
+      Лучшие криптоказино <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">2026 года</em>
+    </h1>
+
+    {allCasinos.length === 0 && (
+      <div class="py-20 text-center">
+        <p class="text-2xl text-text-muted mb-4" style="font-family: var(--font-display); font-style: italic;">
+          Обзоров пока нет
+        </p>
+        <p class="text-sm text-text-dim">Мы готовим обзоры. Следите за обновлениями.</p>
+      </div>
+    )}
+
+    {allCasinos.length > 0 && (
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {allCasinos.map((casino) => (
+          <CasinoCard
+            name={casino.data.name}
+            slug={casino.data.slug}
+            description={casino.data.description}
+            rating={casino.data.rating}
+            tier={casino.data.tier}
+            chips={casino.data.chips}
+            welcomeBonus={casino.data.welcomeBonus}
+            referralUrl={casino.data.referralUrl}
+            facts={{
+              withdrawalSpeed: casino.data.facts.withdrawalSpeed,
+              gamesCount: casino.data.facts.gamesCount,
+            }}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</Layout>

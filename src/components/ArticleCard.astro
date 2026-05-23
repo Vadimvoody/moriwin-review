@@ -1,0 +1,55 @@
+---
+/**
+ * Карточка статьи — для списков и featured-секций на главной.
+ */
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  pubDate: Date;
+  readingTime?: number;
+  tags?: string[];
+}
+
+const { title, description, href, pubDate, readingTime, tags } = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<a
+  href={href}
+  class="block group p-6 border border-border bg-bg-card hover:border-gold-dim transition-all duration-200 hover:-translate-y-1"
+>
+  <p class="eyebrow flex items-center gap-3 mb-3">
+    <span class="inline-block w-5 h-px bg-gold-dim"></span>
+    {dateStr}
+    {readingTime && <span class="text-text-dim">· {readingTime} мин</span>}
+  </p>
+
+  <h3
+    class="text-lg font-bold text-text mb-2 group-hover:text-gold transition-colors"
+    style="font-family: var(--font-display);"
+  >
+    {title}
+  </h3>
+
+  <p class="text-sm text-text-muted leading-relaxed mb-4">
+    {description}
+  </p>
+
+  {
+    tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="text-[11px] px-2.5 py-0.5 border border-border text-text-dim uppercase tracking-wider">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+</a>

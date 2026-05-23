@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const d = article.data;
+---
+
+<ArticleLayout
+  title={d.title}
+  description={d.description}
+  pubDate={d.pubDate}
+  updatedDate={d.updatedDate}
+  author={d.author}
+  eyebrow={d.eyebrow}
+  readingTime={d.readingTime}
+  tags={d.tags}
+  canonical={d.canonical}
+  noindex={d.noindex}
+>
+  <Content />
+
+  <Fragment slot="sidebar">
+    <div class="p-6 border border-border bg-bg-card" style="border-top: 2px solid var(--color-gold);">
+      <p class="eyebrow mb-3 flex items-center gap-3">
+        <span class="inline-block w-5 h-px bg-gold-dim"></span>
+        Что дальше
+      </p>
+      <p class="text-sm text-text-muted leading-relaxed mb-5">
+        Попробуйте MoriWin с нашим промокодом и оцените сами.
+      </p>
+      <a
+        href="https://play.moricasino.com/"
+        class="btn-gold w-full hover:bg-gold-bright text-center"
+        rel="nofollow sponsored noopener"
+        target="_blank"
+      >
+        Перейти в казино →
+      </a>
+    </div>
+  </Fragment>
+</ArticleLayout>
