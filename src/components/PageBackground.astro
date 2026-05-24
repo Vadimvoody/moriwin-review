@@ -1,0 +1,56 @@
+---
+/**
+ * Универсальный фоновый декор для всех страниц.
+ * Подключается в Layout — фишки появляются на каждой странице.
+ * Position: fixed чтобы оставаться на месте при скролле.
+ */
+---
+
+<div
+  class="pointer-events-none fixed inset-0 overflow-hidden"
+  style="z-index: 0;"
+  aria-hidden="true"
+>
+  {/* Subtle gradient blobs by sides */}
+  <div class="absolute inset-0">
+    <div
+      class="absolute"
+      style="top: 10%; left: -10%; width: 400px; height: 400px; border-radius: 50%; background: rgba(105, 124, 200, 0.04); filter: blur(80px);"
+    ></div>
+    <div
+      class="absolute"
+      style="top: 60%; right: -10%; width: 350px; height: 350px; border-radius: 50%; background: rgba(247, 203, 106, 0.035); filter: blur(80px);"
+    ></div>
+    <div
+      class="absolute"
+      style="bottom: 10%; left: 30%; width: 300px; height: 300px; border-radius: 50%; background: rgba(107, 70, 193, 0.03); filter: blur(100px);"
+    ></div>
+  </div>
+
+  {/* Floating chips across viewport */}
+  <div class="absolute inset-0">
+    {/* Top region */}
+    <svg class="chip-float absolute" style="top: 8%; left: 3%; width: 48px; height: 48px; opacity: 0.14; animation-delay: 0s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute" style="top: 5%; right: 5%; width: 36px; height: 36px; opacity: 0.12; animation-delay: 1.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float absolute" style="top: 18%; right: 12%; width: 32px; height: 32px; opacity: 0.1; animation-delay: 3s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="1" opacity="0.5"/></svg>
+
+    {/* Mid region */}
+    <svg class="chip-float-alt absolute" style="top: 35%; left: 6%; width: 56px; height: 56px; opacity: 0.13; animation-delay: 2.2s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float absolute" style="top: 50%; right: 4%; width: 44px; height: 44px; opacity: 0.14; animation-delay: 4s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5"/></svg>
+
+    {/* Bottom region */}
+    <svg class="chip-float-alt absolute" style="bottom: 15%; left: 2%; width: 52px; height: 52px; opacity: 0.13; animation-delay: 1.8s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float absolute" style="bottom: 8%; right: 8%; width: 40px; height: 40px; opacity: 0.15; animation-delay: 0.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute" style="bottom: 25%; right: 18%; width: 28px; height: 28px; opacity: 0.12; animation-delay: 5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="1" opacity="0.5"/></svg>
+
+    {/* XL extras */}
+    <svg class="chip-float absolute hidden xl:block" style="top: 25%; left: -2%; width: 90px; height: 90px; opacity: 0.08; animation-delay: 2.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.6" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 70%; right: -2%; width: 100px; height: 100px; opacity: 0.07; animation-delay: 3.2s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.6" opacity="0.5"/></svg>
+  </div>
+</div>

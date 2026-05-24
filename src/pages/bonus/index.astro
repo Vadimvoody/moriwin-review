@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import SectionDecor from '../../components/SectionDecor.astro';
 
 const allBonuses = (await getCollection('bonuses'))
   .filter((b) => !b.data.noindex)
@@ -11,7 +12,9 @@ const allBonuses = (await getCollection('bonuses'))
   title="Бонусы и промокоды MoriWin — актуальные предложения 2026"
   description="Все действующие бонусы и промокоды казино MoriWin: приветственный пакет 400% + 100 FS, кэшбэк, фриспины и эксклюзивные предложения."
 >
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-20 md:py-24">
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="BONUS" rightText="400%" />
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-20 md:py-24 relative z-10">
     <p class="eyebrow flex items-center gap-3 mb-5">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
       БОНУСЫ И ПРОМОКОДЫ
@@ -71,4 +74,5 @@ const allBonuses = (await getCollection('bonuses'))
       </div>
     )}
   </section>
+  </div>
 </Layout>

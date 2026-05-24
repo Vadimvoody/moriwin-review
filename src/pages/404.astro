@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SectionDecor from '../components/SectionDecor.astro';
 ---
 
 <Layout
@@ -7,7 +8,9 @@ import Layout from '../layouts/Layout.astro';
   description="К сожалению, страница не найдена. Вернитесь на главную, чтобы продолжить."
   noindex
 >
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-32 md:py-40">
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="404" rightText="LOST" />
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-32 md:py-40 relative z-10">
     <p class="text-[11px] uppercase tracking-[0.22em] text-gold-dim font-semibold mb-6 flex items-center gap-3">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
       Ошибка · 404
@@ -50,4 +53,5 @@ import Layout from '../layouts/Layout.astro';
       </ul>
     </div>
   </section>
+  </div>
 </Layout>

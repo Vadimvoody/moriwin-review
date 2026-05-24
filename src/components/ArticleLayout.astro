@@ -4,6 +4,7 @@
  * Подключает prose-стили, breadcrumb, meta-блок.
  */
 import Layout from '../layouts/Layout.astro';
+import SectionDecor from './SectionDecor.astro';
 
 interface Props {
   title: string;
@@ -52,7 +53,9 @@ const updatedStr = updatedDate
   canonical={canonical}
   noindex={noindex}
 >
-  <article class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16 md:py-24">
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="ARTICLE" rightText="2026" />
+    <article class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16 md:py-24 relative z-10">
     <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
       <div class="prose-mori max-w-[720px]">
         {eyebrow && (
@@ -99,5 +102,6 @@ const updatedStr = updatedDate
         <slot name="sidebar" />
       </aside>
     </div>
-  </article>
+    </article>
+  </div>
 </Layout>

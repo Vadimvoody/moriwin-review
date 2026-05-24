@@ -4,6 +4,7 @@ import '../styles/animations.css';
 import { SITE } from '../config/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PageBackground from '../components/PageBackground.astro';
 
 interface Props {
   /** Заголовок страницы. Если не указан — используется defaultTitle. */
@@ -130,6 +131,8 @@ if (schema) {
   </head>
 
   <body class="min-h-screen flex flex-col">
+    <PageBackground />
+
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-gold focus:text-bg focus:px-3 focus:py-2"
@@ -139,7 +142,7 @@ if (schema) {
 
     <Header />
 
-    <main id="main" class="flex-1">
+    <main id="main" class="flex-1 relative" style="z-index: 1;">
       <slot />
     </main>
 

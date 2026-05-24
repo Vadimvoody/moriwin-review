@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import ChipStack from '../../../components/ChipStack.astro';
+import HeroDecor from '../../../components/HeroDecor.astro';
+import SectionDecor from '../../../components/SectionDecor.astro';
 
 export async function getStaticPaths() {
   const casinos = await getCollection('casinos');
@@ -30,6 +32,7 @@ const tierLabel: Record<string, string> = {
 >
   {/* HERO */}
   <section class="relative">
+    <HeroDecor />
     <div
       class="absolute inset-0 pointer-events-none -z-10"
       style="background: radial-gradient(ellipse 60% 50% at 30% 40%, rgba(105, 124, 200, 0.08), transparent 70%);"
@@ -77,11 +80,13 @@ const tierLabel: Record<string, string> = {
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* ARTICLE + SIDEBAR */}
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24">
-    <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
-      <article class="prose-mori max-w-[720px]">
-        <Content />
-      </article>
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="REVIEW" rightText="VIP" />
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 relative z-10">
+      <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
+        <article class="prose-mori max-w-[720px]">
+          <Content />
+        </article>
 
       <aside class="md:sticky md:top-24 md:self-start space-y-6">
         <div class="relative p-7 border border-border bg-bg-card" style="border-top: 2px solid var(--color-gold);">
@@ -135,5 +140,6 @@ const tierLabel: Record<string, string> = {
         )}
       </aside>
     </div>
-  </section>
+    </section>
+  </div>
 </Layout>
