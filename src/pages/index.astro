@@ -117,7 +117,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   {/* === ARTICLE + SIDEBAR === */}
   <div class="relative overflow-hidden">
-    <SectionDecor leftText="VERDICT" rightText="VIP" showChips={true} />
+    <SectionDecor leftText="VERDICT" rightText="VIP" />
     <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
       <div class="grid gap-14 md:gap-20 md:grid-cols-[minmax(0,1fr)_320px]">
         <article class="prose-mori max-w-[720px] min-w-0 relative">
@@ -220,7 +220,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   {/* === COMPARISON === */}
   <div class="relative overflow-hidden">
-    <SectionDecor leftText="BEST" rightText="1ST" showChips={true} leftColor="rgba(105, 124, 200, 0.04)" rightColor="rgba(247, 203, 106, 0.035)" />
+    <SectionDecor leftText="BEST" rightText="1ST" leftColor="rgba(105, 124, 200, 0.04)" rightColor="rgba(247, 203, 106, 0.035)" />
     <section
       class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10"
       style="background: linear-gradient(180deg, transparent, rgba(105, 124, 200, 0.03), transparent);"
@@ -257,7 +257,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
         <p class="text-[11px] uppercase tracking-[0.18em] text-text-dim font-medium mb-5">VIP-TIER · РЕКОМЕНДУЕМ</p>
         <ChipStack chips={['gold', 'purple', 'purple', 'black', 'red']} size="sm" />
         <ul class="mt-5 mb-6 list-none tabular">
-          <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">Welcome <strong class="text-success font-semibold">400% + 100FS</strong></li>
+          <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">Welcome <strong class="text-success font-semibold">400% + 100 FS</strong></li>
           <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">Выплата <strong class="text-success font-semibold">5мин–24ч</strong></li>
           <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">RTP <strong class="text-success font-semibold">99%</strong></li>
           <li class="flex justify-between text-sm text-text-muted py-2">Авторских игр <strong class="text-success font-semibold">5</strong></li>
@@ -291,7 +291,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   {/* === QUICK LINKS === */}
   <div id="quick-start" class="relative overflow-hidden scroll-mt-24">
-    <SectionDecor leftText="START" rightText="PLAY" showChips={true} />
+    <SectionDecor leftText="START" rightText="PLAY" />
     <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
     <p class="eyebrow flex items-center gap-3 mb-5">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
@@ -323,7 +323,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
   {/* === LATEST ARTICLES === */}
   {recent.length > 0 && (
     <div class="relative overflow-hidden">
-      <SectionDecor leftText="GUIDE" rightText="2026" showChips={true} />
+      <SectionDecor leftText="GUIDE" rightText="2026" />
       <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
       <div class="flex items-center justify-between mb-10">
         <div>

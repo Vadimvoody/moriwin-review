@@ -1,12 +1,12 @@
 ---
 import { SITE, FOOTER_NAV } from '../config/site';
 const year = new Date().getFullYear();
-const groups = [FOOTER_NAV.reviews, FOOTER_NAV.guides, FOOTER_NAV.contacts];
+const groups = [FOOTER_NAV.reviews, FOOTER_NAV.guides, FOOTER_NAV.ecosystem, FOOTER_NAV.contacts];
 ---
 
 <footer class="border-t border-border mt-20">
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-12 mb-12">
       <div class="max-w-[420px]">
         <a href="/" class="flex items-baseline gap-2.5" aria-label={SITE.name}>
           <span
