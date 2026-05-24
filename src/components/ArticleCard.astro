@@ -1,6 +1,7 @@
 ---
 /**
  * Карточка статьи — для списков и featured-секций на главной.
+ * Включает SVG-иконку по тегу статьи.
  */
 interface Props {
   title: string;
@@ -18,12 +19,47 @@ const dateStr = pubDate.toLocaleDateString('ru-RU', {
   month: 'long',
   year: 'numeric',
 });
+
+/** Определяет SVG-иконку по тегу статьи */
+function getIconForTags(tags: string[] = []): string {
+  const joined = tags.join(' ').toLowerCase();
+  if (joined.includes('слот') || joined.includes('казино') || joined.includes('moriwin'))
+    return '<circle cx="12" cy="12" r="10"/><path d="M8 8v8M12 8v8M16 8v8"/>';
+  if (joined.includes('бонус') || joined.includes('промокод') || joined.includes('400'))
+    return '<path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>';
+  if (joined.includes('зеркал'))
+    return '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>';
+  if (joined.includes('крипт') || joined.includes('токен') || joined.includes('mori coin'))
+    return '<circle cx="12" cy="12" r="10"/><path d="M9 8h4a2 2 0 110 4h-4v4h5M9 12h4a2 2 0 100-4H9"/>';
+  if (joined.includes('vpn'))
+    return '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>';
+  if (joined.includes('регистр'))
+    return '<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>';
+  if (joined.includes('вывод') || joined.includes('депозит'))
+    return '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>';
+  // default — статья
+  return '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>';
+}
 ---
 
 <a
   href={href}
-  class="block group p-6 border border-border bg-bg-card hover:border-gold-dim transition-all duration-200 hover:-translate-y-1"
+  class="block group p-6 border border-border bg-bg-card hover:border-gold-dim transition-all duration-200 hover:-translate-y-1 card-hover"
 >
+  {/* SVG Icon */}
+  <div class="mb-4">
+    <svg
+      class="w-8 h-8 text-gold"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      set:html={getIconForTags(tags)}
+    />
+  </div>
+
   <p class="eyebrow flex items-center gap-3 mb-3">
     <span class="inline-block w-5 h-px bg-gold-dim"></span>
     {dateStr}
