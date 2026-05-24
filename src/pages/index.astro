@@ -115,46 +115,58 @@ const today = new Date().toLocaleDateString('ru-RU', {
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === ARTICLE + SIDEBAR === */}
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24">
+  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
     <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
-      <article class="prose-mori max-w-[720px]">
-        <p class="eyebrow flex items-center gap-3 mb-5">
-          <span class="inline-block w-6 h-px bg-gold-dim"></span>
-          Краткий вердикт
-        </p>
-        <h2 class="display-title text-[clamp(32px,4vw,48px)] mb-8" style="margin-top: 0;">
-          За полтора месяца тестов MoriWin <em>удивил</em> там, где не ждали
-        </h2>
+      <article class="prose-mori max-w-[720px] relative">
+        {/* Side decorative blobs */}
+        <div class="side-blobs"></div>
+        <div class="noise-overlay absolute inset-0 pointer-events-none" style="z-index: 0;"></div>
 
-        <p class="lede">
-          MoriWin вышел на рынок в 2026 году как продукт команды YouTube-блогера
-          Профессора Мориарти. Это означает три вещи: за казино стоит реальная
-          медиа-аудитория в 4.5 миллиона человек, есть собственный токен $MORI,
-          и есть привычка делать продукт «для своих» — а не для абстрактного игрока.
-        </p>
+        <div class="relative" style="z-index: 2;">
+          <p class="eyebrow flex items-center gap-3 mb-5">
+            <span class="inline-block w-6 h-px bg-gold-dim"></span>
+            Краткий вердикт
+          </p>
+          <h2 class="display-title text-[clamp(32px,4vw,48px)] mb-8" style="margin-top: 0;">
+            За полтора месяца тестов MoriWin <em>удивил</em> там, где не ждали
+          </h2>
 
-        <p>
-          За время тестов мы сделали 14 депозитов разными способами (карта
-          МИР, СБП, USDT-TRC20, BTC), вывели средства семь раз — самый быстрый
-          кэш-аут занял 11 минут (USDT), самый медленный — 22 часа (карта, с
-          ручной верификацией). Это <strong>выше среднего</strong> для рынка
-          СНГ-казино в 2026 году.
-        </p>
+          <div class="space-y-6">
+            <p class="lede flex gap-4 items-start">
+              <svg class="w-6 h-6 flex-shrink-0 mt-1.5 text-gold-dim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              <span>MoriWin вышел на рынок в 2026 году как продукт команды YouTube-блогера
+              Профессора Мориарти. Это означает три вещи: за казино стоит реальная
+              медиа-аудитория в 4.5 миллиона человек, есть собственный токен $MORI,
+              и есть привычка делать продукт «для своих» — а не для абстрактного игрока.</span>
+            </p>
 
-        <p>
-          Главная сильная сторона — авторские слоты MoriWin Originals (Mori
-          Mines, Mori Wheel, Mori Jet, Mori Plinko, Mori Coin Flip). RTP
-          заявлен 99%, и по нашим логам — это, кажется, не маркетинговая
-          ложь: из 2400 ставок мы вышли в небольшой плюс. Главное — играть
-          не «по системе», а с дисциплиной.
-        </p>
+            <p class="flex gap-4 items-start">
+              <svg class="w-6 h-6 flex-shrink-0 mt-0.5 text-gold-dim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              <span>За время тестов мы сделали 14 депозитов разными способами (карта
+              МИР, СБП, USDT-TRC20, BTC), вывели средства семь раз — самый быстрый
+              кэш-аут занял 11 минут (USDT), самый медленный — 22 часа (карта, с
+              ручной верификацией). Это <strong>выше среднего</strong> для рынка
+              СНГ-казино в 2026 году.</span>
+            </p>
 
-        <p>
-          Слабые места: приложения в Google Play и App Store нет (только PWA),
-          верификация обязательна перед первым выводом (фото паспорта + селфи),
-          и не все провайдеры доступны в демо. Если последнее для вас критично —
-          MoriWin может не подойти.
-        </p>
+            <p class="flex gap-4 items-start">
+              <svg class="w-6 h-6 flex-shrink-0 mt-0.5 text-gold-dim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+              <span>Главная сильная сторона — авторские слоты MoriWin Originals (Mori
+              Mines, Mori Wheel, Mori Jet, Mori Plinko, Mori Coin Flip). RTP
+              заявлен 99%, и по нашим логам — это, кажется, не маркетинговая
+              ложь: из 2400 ставок мы вышли в небольшой плюс. Главное — играть
+              не «по системе», а с дисциплиной.</span>
+            </p>
+
+            <p class="flex gap-4 items-start">
+              <svg class="w-6 h-6 flex-shrink-0 mt-0.5 text-gold-dim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              <span>Слабые места: приложения в Google Play и App Store нет (только PWA),
+              верификация обязательна перед первым выводом (фото паспорта + селфи),
+              и не все провайдеры доступны в демо. Если последнее для вас критично —
+              MoriWin может не подойти.</span>
+            </p>
+          </div>
+        </div>
       </article>
 
       <aside class="md:sticky md:top-24 md:self-start space-y-6">
@@ -203,7 +215,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   {/* === LATEST ARTICLES === */}
   {recent.length > 0 && (
-    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24">
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
       <div class="flex items-center justify-between mb-10">
         <div>
           <p class="eyebrow flex items-center gap-3 mb-3">
@@ -216,7 +228,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
         </div>
         <a href="/articles/" class="btn-outline hidden md:inline-flex">Все статьи →</a>
       </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
         {recent.map((article) => (
           <ArticleCard
             title={article.data.title}
@@ -236,7 +248,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   {/* === COMPARISON === */}
   <section
-    class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24"
+    class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal"
     style="background: linear-gradient(180deg, transparent, rgba(105, 124, 200, 0.03), transparent);"
   >
     <p class="text-[11px] text-center uppercase tracking-[0.22em] text-gold font-semibold mb-5">— Сравнение</p>
@@ -303,7 +315,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === QUICK LINKS === */}
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24">
+  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
     <p class="eyebrow flex items-center gap-3 mb-5">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
       НАЧНИТЕ ОТСЮДА
@@ -311,7 +323,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
     <h2 class="display-title text-[clamp(28px,4vw,42px)] mb-10" style="margin-top: 0;">
       Быстрый <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">доступ</em>
     </h2>
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
       {[
         { href: '/casinos/moriwin/', title: 'Обзор MoriWin Casino', desc: 'Полный обзор: лицензия, игры, бонусы, вывод средств' },
         { href: '/articles/bonus-moriwin-400/', title: 'Бонус 400% + 100 FS', desc: 'Как получить, условия отыгрыша, стратегия' },
@@ -320,7 +332,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
         { href: '/articles/moriwin-withdrawal/', title: 'Вывод средств', desc: 'Сроки, способы, лимиты — наши тесты' },
         { href: '/articles/mori-coin-token/', title: 'Токен $MORI', desc: 'Что это, как купить, перспективы' },
       ].map((item) => (
-        <a href={item.href} class="group block p-6 border border-border bg-bg-card hover:border-gold-dim transition-all duration-200 hover:-translate-y-1">
+        <a href={item.href} class="group block p-6 border border-border bg-bg-card hover:border-gold-dim transition-all duration-200 hover:-translate-y-1 card-hover">
           <h3 class="text-lg font-bold text-text mb-2 group-hover:text-gold transition-colors" style="font-family: var(--font-display);">{item.title}</h3>
           <p class="text-sm text-text-muted leading-relaxed">{item.desc}</p>
         </a>
