@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import ChipStack from '../components/ChipStack.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import HeroDecor from '../components/HeroDecor.astro';
+import SectionDecor from '../components/SectionDecor.astro';
 import { SITE } from '../config/site';
 
 const allArticles = (await getCollection('articles'))
@@ -115,9 +116,11 @@ const today = new Date().toLocaleDateString('ru-RU', {
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === ARTICLE + SIDEBAR === */}
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
-    <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
-      <article class="prose-mori max-w-[720px] relative">
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="VERDICT" rightText="VIP" showChips={true} />
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
+      <div class="grid gap-14 md:gap-20 md:grid-cols-[1fr_320px]">
+        <article class="prose-mori max-w-[720px] relative">
         {/* Side decorative blobs */}
         <div class="side-blobs"></div>
         <div class="noise-overlay absolute inset-0 pointer-events-none" style="z-index: 0;"></div>
@@ -209,13 +212,16 @@ const today = new Date().toLocaleDateString('ru-RU', {
         </div>
       </aside>
     </div>
-  </section>
+    </section>
+  </div>
 
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === LATEST ARTICLES === */}
   {recent.length > 0 && (
-    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
+    <div class="relative overflow-hidden">
+      <SectionDecor leftText="GUIDE" rightText="2026" showChips={true} />
+      <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
       <div class="flex items-center justify-between mb-10">
         <div>
           <p class="eyebrow flex items-center gap-3 mb-3">
@@ -242,15 +248,18 @@ const today = new Date().toLocaleDateString('ru-RU', {
       </div>
       <a href="/articles/" class="btn-outline w-full mt-6 md:hidden">Все статьи →</a>
     </section>
+    </div>
   )}
 
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === COMPARISON === */}
-  <section
-    class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal"
-    style="background: linear-gradient(180deg, transparent, rgba(105, 124, 200, 0.03), transparent);"
-  >
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="BEST" rightText="1ST" showChips={true} leftColor="rgba(105, 124, 200, 0.04)" rightColor="rgba(247, 203, 106, 0.035)" />
+    <section
+      class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10"
+      style="background: linear-gradient(180deg, transparent, rgba(105, 124, 200, 0.03), transparent);"
+    >
     <p class="text-[11px] text-center uppercase tracking-[0.22em] text-gold font-semibold mb-5">— Сравнение</p>
     <h2 class="display-title text-[clamp(32px,4vw,48px)] text-center max-w-[720px] mx-auto mb-14">
       Где MoriWin <em class="not-italic text-gold" style="font-style: italic; font-weight: 400;">выигрывает</em> у других криптоказино
@@ -310,12 +319,15 @@ const today = new Date().toLocaleDateString('ru-RU', {
         <a href="https://bc.game/" class="btn-outline w-full btn-micro" rel="nofollow sponsored noopener" target="_blank">Открыть →</a>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === QUICK LINKS === */}
-  <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal">
+  <div class="relative overflow-hidden">
+    <SectionDecor leftText="START" rightText="PLAY" showChips={true} />
+    <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
     <p class="eyebrow flex items-center gap-3 mb-5">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
       НАЧНИТЕ ОТСЮДА
@@ -338,5 +350,6 @@ const today = new Date().toLocaleDateString('ru-RU', {
         </a>
       ))}
     </div>
-  </section>
+    </section>
+  </div>
 </Layout>

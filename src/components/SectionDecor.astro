@@ -1,0 +1,76 @@
+---
+/**
+ * Декор для широких секций — фоновая типографика по бокам + редкие фишки.
+ * Только для xl+ экранов (1280px+).
+ */
+interface Props {
+  /** Большой текст слева — например "BONUS", "GUIDE", "VIP" */
+  leftText?: string;
+  /** Большой текст справа — например цифра, год, рейтинг */
+  rightText?: string;
+  /** Цвет левого (по умолчанию gold) */
+  leftColor?: string;
+  /** Цвет правого (по умолчанию purple) */
+  rightColor?: string;
+  /** Курсив левый */
+  leftItalic?: boolean;
+  /** Курсив правый */
+  rightItalic?: boolean;
+  /** Показать декоративные фишки */
+  showChips?: boolean;
+}
+
+const {
+  leftText,
+  rightText,
+  leftColor = 'rgba(247, 203, 106, 0.04)',
+  rightColor = 'rgba(105, 124, 200, 0.045)',
+  leftItalic = false,
+  rightItalic = false,
+  showChips = true,
+} = Astro.props;
+---
+
+<div class="hidden xl:block absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+  {leftText && (
+    <div
+      class="absolute top-[15%] -left-[2%] text-[clamp(140px,14vw,260px)] font-bold leading-none tracking-tighter select-none"
+      style={`font-family: var(--font-display); color: ${leftColor}; letter-spacing: -0.05em; ${leftItalic ? 'font-style: italic; font-weight: 400;' : ''}`}
+    >
+      {leftText}
+    </div>
+  )}
+
+  {rightText && (
+    <div
+      class="absolute bottom-[10%] -right-[2%] text-[clamp(160px,16vw,280px)] font-bold leading-none tracking-tighter select-none"
+      style={`font-family: var(--font-display); color: ${rightColor}; letter-spacing: -0.05em; ${rightItalic ? 'font-style: italic; font-weight: 400;' : ''}`}
+    >
+      {rightText}
+    </div>
+  )}
+
+  {showChips && (
+    <>
+      {/* Decorative chip — left side */}
+      <svg
+        class="chip-float-alt absolute"
+        style="top: 25%; left: 1%; width: 70px; height: 70px; opacity: 0.14; animation-delay: 1s;"
+        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3" />
+        <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5" />
+      </svg>
+
+      {/* Decorative chip — right side */}
+      <svg
+        class="chip-float absolute"
+        style="top: 60%; right: 2%; width: 80px; height: 80px; opacity: 0.12; animation-delay: 2.5s;"
+        viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3" />
+        <circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5" />
+      </svg>
+    </>
+  )}
+</div>
