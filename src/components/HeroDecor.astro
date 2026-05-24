@@ -4,8 +4,8 @@
  * - gradient-сетка
  * - noise-текстура
  * - световые лучи
- * - анимированные покерные фишки (12 штук, разные размеры)
- * - гигантская фоновая типографика (только xl+)
+ * - анимированные покерные фишки (20+ штук)
+ * - гигантская фоновая типографика (xl+)
  */
 ---
 
@@ -21,23 +21,18 @@
 
   {/* === BACKGROUND TYPOGRAPHY (xl+ only) === */}
   <div class="hidden xl:block absolute inset-0 overflow-hidden">
-    {/* Left side — vertical "CASINO" */}
     <div
       class="absolute top-[8%] -left-[2%] text-[clamp(180px,18vw,320px)] font-bold leading-none tracking-tighter select-none"
       style="font-family: var(--font-display); color: rgba(247, 203, 106, 0.035); transform: rotate(-90deg); transform-origin: top left; letter-spacing: -0.05em;"
     >
       CASINO
     </div>
-
-    {/* Right side — giant "2026" */}
     <div
       class="absolute top-[12%] -right-[3%] text-[clamp(200px,22vw,380px)] font-bold leading-none tracking-tighter select-none"
       style="font-family: var(--font-display); color: rgba(105, 124, 200, 0.04); letter-spacing: -0.06em;"
     >
       2026
     </div>
-
-    {/* Bottom watermark — "REVIEW" */}
     <div
       class="absolute -bottom-[2%] -left-[1%] text-[clamp(160px,16vw,280px)] font-bold leading-none tracking-tighter italic select-none"
       style="font-family: var(--font-display); color: rgba(247, 203, 106, 0.025); letter-spacing: -0.04em;"
@@ -46,138 +41,49 @@
     </div>
   </div>
 
-  {/* === FLOATING POKER CHIPS === */}
+  {/* === FLOATING POKER CHIPS — 20+ === */}
   <div class="absolute inset-0">
 
-    {/* === Mobile/tablet visible (smaller, fewer) === */}
-    {/* Gold chip — top left */}
-    <svg
-      class="chip-float absolute"
-      style="top: 10%; left: 4%; width: 56px; height: 56px; opacity: 0.22; animation-delay: 0s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$1K</text>
-    </svg>
+    {/* --- Mobile/tablet visible (5 chips) --- */}
+    <svg class="chip-float absolute" style="top: 10%; left: 4%; width: 56px; height: 56px; opacity: 0.22; animation-delay: 0s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$1K</text></svg>
 
-    {/* Purple chip — right side */}
-    <svg
-      class="chip-float-alt absolute"
-      style="top: 32%; right: 3%; width: 48px; height: 48px; opacity: 0.2; animation-delay: 2s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="1" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#6b46c1" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$500</text>
-    </svg>
+    <svg class="chip-float-alt absolute" style="top: 32%; right: 3%; width: 48px; height: 48px; opacity: 0.2; animation-delay: 2s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="1" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#6b46c1" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$500</text></svg>
 
-    {/* Black chip — bottom left */}
-    <svg
-      class="chip-float absolute"
-      style="bottom: 18%; left: 8%; width: 44px; height: 44px; opacity: 0.18; animation-delay: 4s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="1" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#718096" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$100</text>
-    </svg>
+    <svg class="chip-float absolute" style="bottom: 18%; left: 8%; width: 44px; height: 44px; opacity: 0.18; animation-delay: 4s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="1" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#718096" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$100</text></svg>
 
-    {/* Gold chip — bottom right */}
-    <svg
-      class="chip-float-alt absolute"
-      style="bottom: 12%; right: 7%; width: 52px; height: 52px; opacity: 0.24; animation-delay: 1s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$1K</text>
-    </svg>
+    <svg class="chip-float-alt absolute" style="bottom: 12%; right: 7%; width: 52px; height: 52px; opacity: 0.24; animation-delay: 1s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="10" font-weight="600" font-family="Manrope, sans-serif">$1K</text></svg>
 
-    {/* === DESKTOP ONLY (xl+) — Big chips in side margins === */}
+    <svg class="chip-float absolute hidden lg:block" style="top: 6%; right: 22%; width: 36px; height: 36px; opacity: 0.14; animation-delay: 3s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="1" opacity="0.5"/></svg>
 
-    {/* HUGE Gold chip — far left, behind text */}
-    <svg
-      class="chip-float absolute hidden xl:block"
-      style="top: 18%; left: -3%; width: 140px; height: 140px; opacity: 0.12; animation-delay: 0.5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$1K</text>
-    </svg>
+    <svg class="chip-float-alt absolute hidden lg:block" style="top: 48%; left: 18%; width: 32px; height: 32px; opacity: 0.12; animation-delay: 5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="1" opacity="0.5"/></svg>
 
-    {/* HUGE Purple chip — far right */}
-    <svg
-      class="chip-float-alt absolute hidden xl:block"
-      style="top: 45%; right: -4%; width: 160px; height: 160px; opacity: 0.1; animation-delay: 2.5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5" />
-    </svg>
+    {/* --- Desktop xl+ (15 more chips filling side margins) --- */}
+    <svg class="chip-float absolute hidden xl:block" style="top: 18%; left: -3%; width: 140px; height: 140px; opacity: 0.12; animation-delay: 0.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$1K</text></svg>
 
-    {/* Medium Gold chip — left side, mid */}
-    <svg
-      class="chip-float-alt absolute hidden xl:block"
-      style="top: 55%; left: 2%; width: 90px; height: 90px; opacity: 0.2; animation-delay: 3.5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="8" font-weight="600" font-family="Manrope, sans-serif">VIP</text>
-    </svg>
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 45%; right: -4%; width: 160px; height: 160px; opacity: 0.1; animation-delay: 2.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5"/></svg>
 
-    {/* Medium Black chip — right side, top */}
-    <svg
-      class="chip-float absolute hidden xl:block"
-      style="top: 8%; right: 1%; width: 80px; height: 80px; opacity: 0.16; animation-delay: 1.5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="0.8" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#718096" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$100</text>
-    </svg>
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 55%; left: 2%; width: 90px; height: 90px; opacity: 0.2; animation-delay: 3.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.8" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="8" font-weight="600" font-family="Manrope, sans-serif">VIP</text></svg>
 
-    {/* Small accent — top center-right */}
-    <svg
-      class="chip-float absolute hidden lg:block"
-      style="top: 6%; right: 22%; width: 36px; height: 36px; opacity: 0.14; animation-delay: 3s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="1" opacity="0.5" />
-    </svg>
+    <svg class="chip-float absolute hidden xl:block" style="top: 8%; right: 1%; width: 80px; height: 80px; opacity: 0.16; animation-delay: 1.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="0.8" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#718096" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$100</text></svg>
 
-    {/* Small accent — middle left */}
-    <svg
-      class="chip-float-alt absolute hidden lg:block"
-      style="top: 48%; left: 18%; width: 32px; height: 32px; opacity: 0.12; animation-delay: 5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="2" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="1" opacity="0.5" />
-    </svg>
+    <svg class="chip-float absolute hidden xl:block" style="bottom: 25%; right: 18%; width: 64px; height: 64px; opacity: 0.18; animation-delay: 4.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="0.8" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#c53030" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$5</text></svg>
 
-    {/* Red chip — bottom center (xl) */}
-    <svg
-      class="chip-float absolute hidden xl:block"
-      style="bottom: 25%; right: 18%; width: 64px; height: 64px; opacity: 0.18; animation-delay: 4.5s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="0.8" opacity="0.5" />
-      <text x="24" y="28" text-anchor="middle" fill="#c53030" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$5</text>
-    </svg>
+    <svg class="chip-float-alt absolute hidden xl:block" style="bottom: -2%; left: -2%; width: 180px; height: 180px; opacity: 0.08; animation-delay: 6s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.5" opacity="0.5"/></svg>
 
-    {/* Gold mega chip — bottom far left (xl) */}
-    <svg
-      class="chip-float-alt absolute hidden xl:block"
-      style="bottom: -2%; left: -2%; width: 180px; height: 180px; opacity: 0.08; animation-delay: 6s;"
-      viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1" stroke-dasharray="4 3" />
-      <circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.5" opacity="0.5" />
-    </svg>
+    <svg class="chip-float absolute hidden xl:block" style="top: 72%; left: -1%; width: 110px; height: 110px; opacity: 0.14; animation-delay: 2s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 30%; right: -2%; width: 120px; height: 120px; opacity: 0.1; animation-delay: 3s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="1" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="0.5" opacity="0.5"/></svg>
+
+    <svg class="chip-float absolute hidden xl:block" style="top: 85%; right: 5%; width: 70px; height: 70px; opacity: 0.16; animation-delay: 5.5s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#4a5568" stroke-width="0.8" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#718096" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$50</text></svg>
+
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 65%; left: 5%; width: 50px; height: 50px; opacity: 0.2; animation-delay: 4s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5"/><text x="24" y="28" text-anchor="middle" fill="#d4a836" font-size="8" font-weight="600" font-family="Manrope, sans-serif">$1K</text></svg>
+
+    <svg class="chip-float absolute hidden xl:block" style="top: 40%; left: -1%; width: 60px; height: 60px; opacity: 0.15; animation-delay: 1s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="1" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute hidden xl:block" style="top: 90%; right: -1%; width: 95px; height: 95px; opacity: 0.12; animation-delay: 3.2s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#6b46c1" stroke-width="0.8" opacity="0.5"/></svg>
+
+    <svg class="chip-float absolute hidden xl:block" style="top: 2%; left: 15%; width: 42px; height: 42px; opacity: 0.18; animation-delay: 2.8s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4a836" stroke-width="2" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#d4a836" stroke-width="1" opacity="0.5"/></svg>
+
+    <svg class="chip-float-alt absolute hidden xl:block" style="bottom: 40%; right: -3%; width: 130px; height: 130px; opacity: 0.09; animation-delay: 1.8s;" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#c53030" stroke-width="1" stroke-dasharray="4 3"/><circle cx="24" cy="24" r="16" stroke="#c53030" stroke-width="0.5" opacity="0.5"/></svg>
   </div>
 </div>
