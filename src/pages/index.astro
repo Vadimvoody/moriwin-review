@@ -183,7 +183,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
           </p>
           <a
             href={SITE.affiliate.refUrl || SITE.brand.casinoUrl}
-            class="btn-gold w-full hover:bg-gold-bright"
+          class="btn-gold w-full hover:bg-gold-bright btn-micro"
             rel="nofollow sponsored noopener"
             target="_blank"
           >
@@ -258,7 +258,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
     <div class="grid gap-6 md:grid-cols-3">
       {/* 1xSlots */}
-      <div class="relative p-8 border border-border bg-bg-card transition-all hover:-translate-y-1 hover:border-gold-dim">
+      <div class="relative p-8 border border-border bg-bg-card transition-all hover:-translate-y-1 hover:border-gold-dim card-hover">
         <h3 class="text-[26px] font-bold text-text mb-1" style="font-family: var(--font-display);">1xSlots</h3>
         <p class="text-[11px] uppercase tracking-[0.18em] text-text-dim font-medium mb-5">PRO-TIER · СРАВНЕНИЕ</p>
         <ChipStack chips={['black', 'purple', 'red', 'red']} size="sm" />
@@ -268,12 +268,12 @@ const today = new Date().toLocaleDateString('ru-RU', {
           <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">RTP <strong class="text-text font-semibold">96%</strong></li>
           <li class="flex justify-between text-sm text-text-muted py-2">Авторских игр <strong class="text-text font-semibold">нет</strong></li>
         </ul>
-        <a href="https://1xslots.com/" class="btn-outline w-full" rel="nofollow sponsored noopener" target="_blank">Открыть →</a>
+        <a href="https://1xslots.com/" class="btn-outline w-full btn-micro" rel="nofollow sponsored noopener" target="_blank">Открыть →</a>
       </div>
 
       {/* MoriWin — featured */}
       <div
-        class="relative p-8 border border-gold transition-all hover:-translate-y-1"
+        class="relative p-8 border border-gold transition-all hover:-translate-y-1 card-hover"
         style="background: linear-gradient(180deg, rgba(247, 203, 106, 0.05), var(--color-bg-card) 30%);"
       >
         <span class="absolute -top-px right-6 bg-gold text-bg text-[10px] uppercase tracking-[0.15em] font-semibold py-1 px-2.5">Наш выбор</span>
@@ -297,7 +297,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
       </div>
 
       {/* BC.Game */}
-      <div class="relative p-8 border border-border bg-bg-card transition-all hover:-translate-y-1 hover:border-gold-dim">
+      <div class="relative p-8 border border-border bg-bg-card transition-all hover:-translate-y-1 hover:border-gold-dim card-hover">
         <h3 class="text-[26px] font-bold text-text mb-1" style="font-family: var(--font-display);">BC.Game</h3>
         <p class="text-[11px] uppercase tracking-[0.18em] text-text-dim font-medium mb-5">PRO-TIER · СРАВНЕНИЕ</p>
         <ChipStack chips={['purple', 'black', 'red']} size="sm" />
@@ -307,7 +307,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
           <li class="flex justify-between text-sm text-text-muted py-2 border-b border-border">RTP <strong class="text-text font-semibold">97%</strong></li>
           <li class="flex justify-between text-sm text-text-muted py-2">Авторских игр <strong class="text-success font-semibold">8</strong></li>
         </ul>
-        <a href="https://bc.game/" class="btn-outline w-full" rel="nofollow sponsored noopener" target="_blank">Открыть →</a>
+        <a href="https://bc.game/" class="btn-outline w-full btn-micro" rel="nofollow sponsored noopener" target="_blank">Открыть →</a>
       </div>
     </div>
   </section>
