@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Запрещаем индексировать служебное
+# Service paths and tracking URLs
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*?utm_
