@@ -5,6 +5,8 @@
  */
 import Layout from '../layouts/Layout.astro';
 import SectionDecor from './SectionDecor.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { BreadcrumbItem } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -17,6 +19,8 @@ interface Props {
   tags?: string[];
   canonical?: string;
   noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -30,6 +34,8 @@ const {
   tags,
   canonical,
   noindex = false,
+  breadcrumbs = [],
+  schema,
 } = Astro.props;
 
 const dateStr = pubDate.toLocaleDateString('ru-RU', {
@@ -52,56 +58,59 @@ const updatedStr = updatedDate
   description={description}
   canonical={canonical}
   noindex={noindex}
+  ogType="article"
+  schema={schema}
 >
   <div class="relative overflow-hidden">
     <SectionDecor leftText="ARTICLE" rightText="2026" />
     <article class="max-w-[1240px] mx-auto px-6 sm:px-8 py-16 md:py-24 relative z-10">
-    <div class="grid gap-14 md:gap-20 md:grid-cols-[minmax(0,1fr)_320px]">
-      <div class="prose-mori max-w-[720px] min-w-0">
-        {eyebrow && (
-          <p class="eyebrow flex items-center gap-3 mb-5">
-            <span class="inline-block w-6 h-px bg-gold-dim"></span>
-            {eyebrow}
-          </p>
-        )}
+      {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+      <div class="grid gap-14 md:gap-20 md:grid-cols-[minmax(0,1fr)_320px]">
+        <div class="prose-mori max-w-[720px] min-w-0">
+          {eyebrow && (
+            <p class="eyebrow flex items-center gap-3 mb-5">
+              <span class="inline-block w-6 h-px bg-gold-dim"></span>
+              {eyebrow}
+            </p>
+          )}
 
-        <h1
-          class="display-title text-[clamp(32px,5vw,52px)] mb-8"
-          style="margin-top: 0;"
-        >
-          <Fragment set:html={title.replace(/<em>|<\/em>/g, '')} />
-        </h1>
+          <h1
+            class="display-title text-[clamp(32px,5vw,52px)] mb-8"
+            style="margin-top: 0;"
+          >
+            <Fragment set:html={title.replace(/<em>|<\/em>/g, '')} />
+          </h1>
 
-        <div class="flex flex-wrap gap-4 text-[13px] text-text-dim tabular mb-10 pb-8 border-b border-border">
-          <span class="inline-flex items-center gap-2">
-            <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
-            {dateStr}
-          </span>
-          {updatedStr && (
+          <div class="flex flex-wrap gap-4 text-[13px] text-text-dim tabular mb-10 pb-8 border-b border-border">
             <span class="inline-flex items-center gap-2">
               <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
-              Обновлено {updatedStr}
+              {dateStr}
             </span>
-          )}
-          <span class="inline-flex items-center gap-2">
-            <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
-            {author}
-          </span>
-          {readingTime && (
+            {updatedStr && (
+              <span class="inline-flex items-center gap-2">
+                <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+                Обновлено {updatedStr}
+              </span>
+            )}
             <span class="inline-flex items-center gap-2">
               <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
-              {readingTime} мин чтения
+              {author}
             </span>
-          )}
+            {readingTime && (
+              <span class="inline-flex items-center gap-2">
+                <span class="inline-block w-1 h-1 rounded-full bg-gold"></span>
+                {readingTime} мин чтения
+              </span>
+            )}
+          </div>
+
+          <slot />
         </div>
 
-        <slot />
+        <aside class="md:sticky md:top-24 md:self-start space-y-6">
+          <slot name="sidebar" />
+        </aside>
       </div>
-
-      <aside class="md:sticky md:top-24 md:self-start space-y-6">
-        <slot name="sidebar" />
-      </aside>
-    </div>
     </article>
   </div>
 </Layout>

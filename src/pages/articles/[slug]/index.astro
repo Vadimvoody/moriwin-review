@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { buildArticleSchema, buildBreadcrumbSchema } from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -13,6 +14,23 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const d = article.data;
+const articlePath = `/articles/${article.id}/`;
+const breadcrumbs = [
+  { label: 'Главная', href: '/' },
+  { label: 'Статьи', href: '/articles/' },
+  { label: d.title, href: articlePath },
+];
+const schemas = [
+  buildArticleSchema({
+    title: d.title,
+    description: d.description,
+    url: articlePath,
+    pubDate: d.pubDate,
+    updatedDate: d.updatedDate,
+    author: d.author,
+  }),
+  buildBreadcrumbSchema(breadcrumbs),
+];
 ---
 
 <ArticleLayout
@@ -26,6 +44,8 @@ const d = article.data;
   tags={d.tags}
   canonical={d.canonical}
   noindex={d.noindex}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
 >
   <Content />
 
