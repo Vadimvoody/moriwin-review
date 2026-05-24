@@ -38,13 +38,94 @@ import { SITE, MAIN_NAV } from '../config/site';
       type="button"
       class="md:hidden flex items-center justify-center w-9 h-9 text-text-muted hover:text-gold transition-colors"
       aria-label="Открыть меню"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
       data-mobile-menu-button
     >
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg class="open-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <line x1="3" y1="7" x2="21" y2="7" />
         <line x1="3" y1="12" x2="21" y2="12" />
         <line x1="3" y1="17" x2="21" y2="17" />
       </svg>
+      <svg class="close-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
     </button>
   </div>
+
+  {/* Mobile menu panel — drops down below header */}
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-border"
+    style="background: rgba(10, 14, 34, 0.96); backdrop-filter: blur(12px);"
+    data-mobile-menu
+  >
+    <nav class="max-w-[1240px] mx-auto px-6 py-6 flex flex-col gap-1" aria-label="Мобильное меню">
+      {
+        MAIN_NAV.map((item) => (
+          <a
+            href={item.href}
+            class="block px-4 py-3 text-base font-medium text-text-muted hover:text-gold hover:bg-bg-card border border-transparent hover:border-gold-dim transition-all"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={SITE.affiliate.refUrl || SITE.brand.casinoUrl}
+        class="btn-gold mt-3 text-center hover:bg-gold-bright"
+        rel="nofollow sponsored noopener"
+        target="_blank"
+      >
+        Получить бонус →
+      </a>
+    </nav>
+  </div>
 </header>
+
+<script>
+  // Mobile menu toggle
+  function initMobileMenu() {
+    const button = document.querySelector<HTMLButtonElement>('[data-mobile-menu-button]');
+    const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+    if (!button || !menu) return;
+
+    const openIcon = button.querySelector<SVGElement>('.open-icon');
+    const closeIcon = button.querySelector<SVGElement>('.close-icon');
+
+    button.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      if (isOpen) {
+        menu.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Открыть меню');
+        openIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      } else {
+        menu.classList.remove('hidden');
+        button.setAttribute('aria-expanded', 'true');
+        button.setAttribute('aria-label', 'Закрыть меню');
+        openIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+      }
+    });
+
+    // Close menu when clicking a link
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Открыть меню');
+        openIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+</script>
