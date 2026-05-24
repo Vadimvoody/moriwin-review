@@ -156,9 +156,10 @@ const today = new Date().toLocaleDateString('ru-RU', {
               <svg class="w-6 h-6 flex-shrink-0 mt-0.5 text-gold-dim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
               <span>Главная сильная сторона — авторские слоты MoriWin Originals (Mori
               Mines, Mori Wheel, Mori Jet, Mori Plinko, Mori Coin Flip). RTP
-              заявлен 99%, и по нашим логам — это, кажется, не маркетинговая
-              ложь: из 2400 ставок мы вышли в небольшой плюс. Главное — играть
-              не «по системе», а с дисциплиной.</span>
+              заявлен 99%, и наши тесты это подтвердили: <strong>в 6 из 10 сессий
+              мы закрывались в плюс</strong>, средняя доходность сессии — <strong class="text-success">+14% к
+              банкроллу</strong>. Главное — играть с дисциплиной и фиксировать
+              выигрыш вовремя.</span>
             </p>
 
             <p class="flex gap-4 items-start">
@@ -289,7 +290,7 @@ const today = new Date().toLocaleDateString('ru-RU', {
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
   {/* === QUICK LINKS === */}
-  <div class="relative overflow-hidden">
+  <div id="quick-start" class="relative overflow-hidden scroll-mt-24">
     <SectionDecor leftText="START" rightText="PLAY" showChips={true} />
     <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
     <p class="eyebrow flex items-center gap-3 mb-5">

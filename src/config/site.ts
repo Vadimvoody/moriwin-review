@@ -70,6 +70,7 @@ export type SiteConfig = typeof SITE;
  * Навигация — главное меню (header) + footer.
  */
 export const MAIN_NAV: Array<{ label: string; href: string }> = [
+  { label: 'С чего начать', href: '/#quick-start' },
   { label: 'Обзор казино', href: '/casinos/moriwin/' },
   { label: 'Бонусы', href: '/bonus/' },
   { label: 'Статьи', href: '/articles/' },
