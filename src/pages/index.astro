@@ -217,42 +217,6 @@ const today = new Date().toLocaleDateString('ru-RU', {
 
   <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
 
-  {/* === LATEST ARTICLES === */}
-  {recent.length > 0 && (
-    <div class="relative overflow-hidden">
-      <SectionDecor leftText="GUIDE" rightText="2026" showChips={true} />
-      <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
-      <div class="flex items-center justify-between mb-10">
-        <div>
-          <p class="eyebrow flex items-center gap-3 mb-3">
-            <span class="inline-block w-6 h-px bg-gold-dim"></span>
-            СТАТЬИ И ГАЙДЫ
-          </p>
-          <h2 class="display-title text-[clamp(28px,4vw,42px)]" style="margin-top: 0;">
-            Последние <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">публикации</em>
-          </h2>
-        </div>
-        <a href="/articles/" class="btn-outline hidden md:inline-flex">Все статьи →</a>
-      </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
-        {recent.map((article) => (
-          <ArticleCard
-            title={article.data.title}
-            description={article.data.description}
-            href={`/articles/${article.id}/`}
-            pubDate={article.data.pubDate}
-            readingTime={article.data.readingTime}
-            tags={article.data.tags}
-          />
-        ))}
-      </div>
-      <a href="/articles/" class="btn-outline w-full mt-6 md:hidden">Все статьи →</a>
-    </section>
-    </div>
-  )}
-
-  <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
-
   {/* === COMPARISON === */}
   <div class="relative overflow-hidden">
     <SectionDecor leftText="BEST" rightText="1ST" showChips={true} leftColor="rgba(105, 124, 200, 0.04)" rightColor="rgba(247, 203, 106, 0.035)" />
@@ -352,4 +316,40 @@ const today = new Date().toLocaleDateString('ru-RU', {
     </div>
     </section>
   </div>
+
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-8"><div class="editorial-divider"></div></div>
+
+  {/* === LATEST ARTICLES === */}
+  {recent.length > 0 && (
+    <div class="relative overflow-hidden">
+      <SectionDecor leftText="GUIDE" rightText="2026" showChips={true} />
+      <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-24 reveal relative z-10">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <p class="eyebrow flex items-center gap-3 mb-3">
+            <span class="inline-block w-6 h-px bg-gold-dim"></span>
+            СТАТЬИ И ГАЙДЫ
+          </p>
+          <h2 class="display-title text-[clamp(28px,4vw,42px)]" style="margin-top: 0;">
+            Последние <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">публикации</em>
+          </h2>
+        </div>
+        <a href="/articles/" class="btn-outline hidden md:inline-flex">Все статьи →</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+        {recent.map((article) => (
+          <ArticleCard
+            title={article.data.title}
+            description={article.data.description}
+            href={`/articles/${article.id}/`}
+            pubDate={article.data.pubDate}
+            readingTime={article.data.readingTime}
+            tags={article.data.tags}
+          />
+        ))}
+      </div>
+      <a href="/articles/" class="btn-outline w-full mt-6 md:hidden">Все статьи →</a>
+    </section>
+    </div>
+  )}
 </Layout>
