@@ -70,30 +70,36 @@ export type SiteConfig = typeof SITE;
  * Навигация — главное меню (header) + footer.
  */
 export const MAIN_NAV: Array<{ label: string; href: string }> = [
-  { label: 'Обзор казино', href: '/casino/' },
-  { label: 'Бонусы и промокоды', href: '/bonus/' },
-  { label: 'Игры Mori Originals', href: '/games/' },
-  { label: 'Отзывы', href: '/reviews/' },
-  { label: 'Гайды', href: '/guide/' },
+  { label: 'Обзор казино', href: '/casinos/moriwin/' },
+  { label: 'Бонусы', href: '/bonus/' },
+  { label: 'Статьи', href: '/articles/' },
+  { label: 'Зеркало', href: '/articles/moriwin-mirror/' },
 ];
 
 export const FOOTER_NAV = {
   reviews: {
     title: 'Обзоры',
     links: [
-      { label: 'MoriWin Casino', href: '/casino/' },
-      { label: 'Mori Originals', href: '/games/' },
-      { label: 'Mori VPN', href: '/mori-vpn/' },
-      { label: 'Токен $MORI', href: '/mori-coin/' },
+      { label: 'MoriWin Casino', href: '/casinos/moriwin/' },
+      { label: 'Обзоры казино', href: '/casinos/' },
+      { label: 'Бонусы и промокоды', href: '/bonus/' },
     ],
   },
   guides: {
     title: 'Гайды',
     links: [
-      { label: 'Регистрация', href: '/guide/registration/' },
-      { label: 'Депозит крипты', href: '/guide/deposit/' },
-      { label: 'Вывод средств', href: '/guide/withdrawal/' },
-      { label: 'Верификация', href: '/guide/kyc/' },
+      { label: 'Бонус 400% + 100 FS', href: '/articles/bonus-moriwin-400/' },
+      { label: 'Регистрация', href: '/articles/moriwin-registration/' },
+      { label: 'Вывод средств', href: '/articles/moriwin-withdrawal/' },
+      { label: 'Зеркало MoriWin', href: '/articles/moriwin-mirror/' },
+    ],
+  },
+  ecosystem: {
+    title: 'Экосистема',
+    links: [
+      { label: 'Токен $MORI', href: '/articles/mori-coin-token/' },
+      { label: 'MoriVPN', href: '/articles/mori-vpn-review/' },
+      { label: 'Криптоказино гайд', href: '/articles/crypto-casino-guide/' },
     ],
   },
   contacts: {
@@ -101,7 +107,6 @@ export const FOOTER_NAV = {
     links: [
       { label: 'editor@', href: 'mailto:editor@moriwin-review.ru' },
       { label: 'Telegram', href: 'https://t.me/moriwin_review' },
-      { label: 'RSS', href: '/rss.xml' },
     ],
   },
 } as const;
