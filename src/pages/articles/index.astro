@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import SectionDecor from '../../components/SectionDecor.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { buildBreadcrumbSchema, buildFaqSchema } from '../../lib/seo';
 
 const allArticles = (await getCollection('articles'))
   .filter((a) => !a.data.noindex)
@@ -10,15 +12,32 @@ const allArticles = (await getCollection('articles'))
 
 const featured = allArticles.filter((a) => a.data.featured);
 const recent = allArticles.slice(0, 12);
+const breadcrumbs = [
+  { label: 'Главная', href: '/' },
+  { label: 'Статьи', href: '/articles/' },
+];
+const faqItems = [
+  {
+    question: 'Какие гайды по MoriWin стоит читать в первую очередь?',
+    answer: 'Начните с обзора казино, бонуса 400% + 100 FS, регистрации, вывода средств и рабочего зеркала. Эти материалы закрывают основные действия нового игрока.',
+  },
+  {
+    question: 'Как часто обновляются статьи?',
+    answer: 'Мы обновляем материалы при изменении бонусов, зеркал, условий вывода или важных деталей экосистемы MoriWin.',
+  },
+];
+const schemas = [buildBreadcrumbSchema(breadcrumbs), buildFaqSchema(faqItems)];
 ---
 
 <Layout
   title="Статьи и гайды по MoriWin — обзоры, новости, инструкции"
   description="Все статьи и гайды по казино MoriWin: как зарегистрироваться, внести депозит, вывести деньги, использовать бонусы и промокоды. Регулярные обновления."
+  schema={schemas}
 >
   <div class="relative overflow-hidden">
     <SectionDecor leftText="GUIDES" rightText="2026" />
     <section class="max-w-[1240px] mx-auto px-6 sm:px-8 py-20 md:py-24 relative z-10">
+    <Breadcrumbs items={breadcrumbs} />
     <p class="eyebrow flex items-center gap-3 mb-5">
       <span class="inline-block w-6 h-px bg-gold-dim"></span>
       ВСЕ СТАТЬИ
@@ -29,6 +48,9 @@ const recent = allArticles.slice(0, 12);
     >
       Гайды, обзоры <em class="text-gold not-italic" style="font-style: italic; font-weight: 400;">и новости</em>
     </h1>
+    <p class="text-[18px] leading-[1.6] text-text-muted max-w-[760px] mb-12">
+      Здесь собраны практические материалы по MoriWin: от регистрации и бонусов до вывода средств, зеркал, MoriVPN и токена $MORI. Мы связываем инструкции между собой, чтобы новый игрок мог быстро пройти путь от первого входа до безопасного вывода.
+    </p>
 
     {allArticles.length === 0 && (
       <div class="py-20 text-center">
@@ -80,6 +102,14 @@ const recent = allArticles.slice(0, 12);
         </div>
       </div>
     )}
+    <div class="mt-16 grid gap-4 md:grid-cols-2">
+      {faqItems.map((item) => (
+        <div class="p-6 border border-border bg-bg-card">
+          <h2 class="text-lg font-bold text-text mb-3" style="font-family: var(--font-display);">{item.question}</h2>
+          <p class="text-sm text-text-muted leading-relaxed">{item.answer}</p>
+        </div>
+      ))}
+    </div>
   </section>
   </div>
 </Layout>
